@@ -18,19 +18,11 @@ object Main extends App {
     return allScore(frames, NormalState(), 0, 0)
   }
 
-  def allScore(frames: List[Frame], state: State, i: Int, acc: Int) : Int = {
-    if (i == frames.size) return acc
-    println(i, acc)
+  def allScore(frames: List[Frame], state: State, i: Int, accumulator: Int) : Int = {
+    if (i == frames.size) return accumulator
     val (score, newState) = frameScore(frames(i), state)
-    return allScore(frames, newState, i+1, acc+score)
+    return allScore(frames, newState, i + 1, accumulator + score)
   }
-
-//  def nextState(frameIndex: Int, state: State): State =
-//    frameIndex match {
-//      case 0                        => NormalState()
-//      case i if 1 to 9 contains i   => state
-//      case _                        => EndState()
-//    }
 
   def frameScore(frame: Frame, state: State): (Int, State) =
     frame match {
